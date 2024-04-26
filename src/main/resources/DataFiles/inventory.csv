@@ -1,0 +1,19 @@
+try {
+            FileReader productsReader = new FileReader("src/main/resources/DataFiles/products.csv");
+            BufferedReader productReader = new BufferedReader(productsReader);
+
+            String input;
+            while ((input = productReader.readLine()) != null) {
+                String[] parts = input.split("\\|");
+                int sku = Integer.parseInt((parts[0]));
+                String productName = parts[1];
+                double price = Double.parseDouble(parts[2]);
+                String deparment = parts[3];
+                StoreProducts product = new StoreProducts(sku,productName,price,deparment);
+                inventory.put(sku, productName);
+            }
+           //  close the stream and release the resources
+            productReader.close();
+
+        } catch (IOException e) {
+            e.printStackTrace();
